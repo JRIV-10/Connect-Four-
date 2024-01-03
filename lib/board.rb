@@ -28,7 +28,7 @@ class Board
     end
 
     def place_piece(column,value)
-        first_av_cell = available_cell(column).assign_value('X')
+        first_av_cell = available_cell(column).assign_value(value)
         @board
     end
 end
