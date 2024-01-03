@@ -1,10 +1,11 @@
 class Board
+    attr_reader :board
     
     def initialize
-        board = Hash.new
+        @board = create_cells
     end
     
-    def cells
+    def create_cells
         board = Hash.new
         keys = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
         keys.map do |key|
@@ -20,22 +21,14 @@ class Board
     end
 
     def available_cell(column)
-        # @@board[column].find_last do |cell|
-        #     cell.empty?
-        #     require 'pry'; binding.pry
-        # end
-        column_cells = cells[column]
+        column_cells = @board[column]
         column_cells.reverse.find do |cell|
             cell.empty?
         end
     end
 
     def place_piece(column,value)
-        first_av_cell = available_cell(column)
-        cells[column].find do |cell|
-            if cell == first_av_cell
-                cell.assign_value(value)
-            end
-        end
+        first_av_cell = available_cell(column).assign_value('X')
+        @board
     end
 end
