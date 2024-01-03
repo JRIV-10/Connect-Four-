@@ -1,6 +1,6 @@
 class Board
 
-    def cells
+    def self.cells
         board = Hash.new([])
         keys = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
         keys.map do |key|
