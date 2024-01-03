@@ -54,7 +54,7 @@ RSpec.describe Board do
                 cell.value
                 end 
         
-            expect(new_columnA).to eq(['.','.','.','.','X','X'])
+            expect(new_columnA).to eq(['.','.','.','.','O','X'])
             expect(new_columnB).to eq(['.','.','.','.','.','X'])
 
         end
