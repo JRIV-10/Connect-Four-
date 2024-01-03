@@ -1,6 +1,4 @@
-require 'rspec'
-require './lib/cell'
-require './lib/board'
+require './spec/spec_helper.rb'
 
 RSpec.describe Board do
     describe '#Cells' do
