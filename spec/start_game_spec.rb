@@ -5,51 +5,31 @@ require './lib/board.rb'
 
 RSpec.describe StartGame do
     describe '#Initializes' do
-        it 'Exists and starts with no turns' do
+        it 'Exists' do
             game = StartGame.new
 
             expect(game).to be_an_instance_of(StartGame)
-            expect(game.turn_count).to eq(0)
         end
     end
 
     describe '#Messajes' do
-        it 'Returns welcome messaje' do
+        it 'Returns main menu selection feedback' do
             game = StartGame.new
+            input = 'p'
+            expect(game.process_main_menu_input(input)).to eq("Let's play the game")
 
-            expect(game.give_welcome).to eq('Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit.')
-        end
-
-        it 'Renders and returns initial board' do
-            game = StartGame.new
-            board = Board.new
-
-            expect(game.return_board(board)).to eq(
-            'ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......')
-        end
-
-        it 'Renders and returns board correctly every time' do
-            game = StartGame.new
-            board = Board.new
-            board1 = board.place_piece('A','X')
-            board2 = board.place_piece('A','O')
-            board3 = board.place_piece('B','X')
+            input = 'q'
+            expect(game.process_main_menu_input(input)).to eq('See you next time, goodbye')
             
-            expect(game.return_board(board3)).to eq(
-            'ABCDEFG\n.......\n.......\n.......\n.......\nO......\nXX.....')
+            input = 'e'
+            expect(game.process_main_menu_input(input)).to eq('Invalid placement. Please enter p or q')
         end
-    end
 
-    describe "#Count_turn" do
-        it 'Counts the turn when turns are taken' do
+        it 'Returns Turn Messaje' do
             game = StartGame.new
-            board = Board.new
-            # player = Player.new('Joey', 'X')
-            # computer = Player.new('Computer', 'O')
-            # turn = Turn.new(board, player, computer)
+            @board = Board.new
             
-            game.count_turn
-            expect(game.turn_count).to eq(1)
+            expect(game.return_turn_messaje).to eq('Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------')
         end
     end
 end

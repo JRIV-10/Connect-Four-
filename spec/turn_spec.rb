@@ -19,8 +19,8 @@ RSpec.describe Turn do
             computer = Player.new('Computer', 'O')
             turn = Turn.new(board, player, computer)
            
-
             expect(turn.validate_user_input('A')).to_not be nil 
+            #should return board(matrix)
         end
     end
 
@@ -43,6 +43,7 @@ RSpec.describe Turn do
             turn = Turn.new(board, player, computer)
  
             expect(turn.validate_user_input('A')).to_not be nil 
+            expect(turn.validate_user_input('M')).to eq('Invalid placement. Please enter a letter (A-G) or in a column that is not full')
 
             turn.computer_turn
             expect(turn.validate_computer_input('B')).to_not be nil 
