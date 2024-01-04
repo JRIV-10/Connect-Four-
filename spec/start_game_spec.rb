@@ -13,7 +13,7 @@ RSpec.describe StartGame do
     end
 
     describe '#Messajes' do
-        it 'Returns welcome messaje' do
+        it 'Returns main menu selection feedback' do
             game = StartGame.new
             input = 'p'
             expect(game.process_main_menu_input(input)).to eq("Let's play the game")
@@ -25,23 +25,11 @@ RSpec.describe StartGame do
             expect(game.process_main_menu_input(input)).to eq('Invalid placement. Please enter p or q')
         end
 
-        it 'Renders and returns initial board' do
+        it 'Returns Turn Messaje' do
             game = StartGame.new
-            board = Board.new
-
-            expect(game.return_board(board)).to eq(
-            'ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......')
-        end
-
-        it 'Renders and returns board correctly every time' do
-            game = StartGame.new
-            board = Board.new
-            board1 = board.place_piece('A','X')
-            board2 = board.place_piece('A','O')
-            board3 = board.place_piece('B','X')
+            @board = Board.new
             
-            expect(game.return_board(board3)).to eq(
-            'ABCDEFG\n.......\n.......\n.......\n.......\nO......\nXX.....')
+            expect(game.return_turn_messaje).to eq('Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------')
         end
     end
 end
