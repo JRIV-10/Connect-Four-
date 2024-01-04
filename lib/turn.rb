@@ -20,8 +20,22 @@ class Turn
 
     def get_user_input
         puts 'Enter a letter A-G to place your piece'
-        input =  gets.chomp.upcase 
+        input =  gets.chomp 
+        # require 'pry'; binding.pry 
         validate_user_input(input)
     end
 
+    def validate_user_input(input)
+        if ('A'..'G').to_a.include?(input) && column_not_full?(input) 
+            puts 'Good Move!'
+            input 
+        else 
+            puts 'Invalid placement. Please enter a letter (A-G) or in a column that is not full'
+            get_user_input
+        end
+    end
+
+    def column_not_full?(column)
+        @board.available_cell(column)!=nil
+    end
 end

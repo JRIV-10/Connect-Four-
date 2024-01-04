@@ -17,10 +17,10 @@ RSpec.describe Turn do
             board = Board.new
             player = Player.new('Joey', 'X')
             computer = Player.new('Computer', 'O')
-
             turn = Turn.new(board, player, computer)
+           
 
-            expect(turn.player_turn).to eq('X')
+            expect(turn.validate_user_input('A')).to_not be nil 
         end
     end
 end
