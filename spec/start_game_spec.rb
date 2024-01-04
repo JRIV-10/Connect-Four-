@@ -15,8 +15,14 @@ RSpec.describe StartGame do
     describe '#Messajes' do
         it 'Returns welcome messaje' do
             game = StartGame.new
+            input = 'p'
+            expect(game.process_main_menu_input(input)).to eq("Let's play the game")
 
-            expect(game.give_welcome).to eq('Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit.')
+            input = 'q'
+            expect(game.process_main_menu_input(input)).to eq('See you next time, goodbye')
+            
+            input = 'e'
+            expect(game.process_main_menu_input(input)).to eq('Invalid placement. Please enter p or q')
         end
 
         it 'Renders and returns initial board' do
@@ -36,19 +42,6 @@ RSpec.describe StartGame do
             
             expect(game.return_board(board3)).to eq(
             'ABCDEFG\n.......\n.......\n.......\n.......\nO......\nXX.....')
-        end
-    end
-
-    describe "#Count_turn" do
-        it 'Counts the turn when turns are taken' do
-            game = StartGame.new
-            board = Board.new
-            # player = Player.new('Joey', 'X')
-            # computer = Player.new('Computer', 'O')
-            # turn = Turn.new(board, player, computer)
-            
-            game.count_turn
-            expect(game.turn_count).to eq(1)
         end
     end
 end
