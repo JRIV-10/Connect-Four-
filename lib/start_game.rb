@@ -1,9 +1,22 @@
 class StartGame 
 
     def give_welcome
-       'Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit.'
+       puts 'Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit.'
+       input =  gets.chomp
+       process_main_menu_input(input)
     end
 
+    def process_main_menu_input(input)
+        if  input == 'p'
+            board = Board.new
+            return_board(board)
+            "Let's play the game"
+        elsif input == 'q'
+            'See you next time, goodbye'
+        else
+            'Invalid placement. Please enter p or q'
+        end
+    end
     
     def return_board(board)
         puts 'Please Enter your column selection: letter A to G'
@@ -35,7 +48,4 @@ class StartGame
         end
     end
 
-    def count_turn
-        @turn_count += 1
-    end
 end
