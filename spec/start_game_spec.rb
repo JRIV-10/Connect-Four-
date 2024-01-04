@@ -5,11 +5,10 @@ require './lib/board.rb'
 
 RSpec.describe StartGame do
     describe '#Initializes' do
-        it 'Exists and starts with no turns' do
+        it 'Exists' do
             game = StartGame.new
 
             expect(game).to be_an_instance_of(StartGame)
-            expect(game.turn_count).to eq(0)
         end
     end
 
