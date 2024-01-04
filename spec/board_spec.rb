@@ -27,7 +27,6 @@ RSpec.describe Board do
     end
 
     describe '#place_piece' do
-        
         it 'Iterates to find first open available cell in a column' do
             board = Board.new
 
@@ -55,6 +54,24 @@ RSpec.describe Board do
             expect(new_columnA).to eq(['.','.','.','.','O','X'])
             expect(new_columnB).to eq(['.','.','.','.','.','X'])
 
+        end
+    end
+
+    describe '#Render Board' do
+        it 'Renders and returns initial board' do
+            board = Board.new
+
+            expect(board.return_board).to eq('ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......')
+        end
+
+        it 'Renders and returns board correctly every time' do
+            board = Board.new
+            board.place_piece('A','X')
+            board.place_piece('A','O')
+            board.place_piece('B','X')
+            
+            expect(board.return_board).to eq(
+            'ABCDEFG\n.......\n.......\n.......\n.......\nO......\nXX.....')
         end
     end
 end
