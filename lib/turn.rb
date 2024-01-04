@@ -14,6 +14,15 @@ class Turn
         @board.place_piece(column, @player.piece)
     end
 
+    def computer_turn 
+        column = get_random_column
+        @board.place_piece(column, @computer.piece) if column_not_full?(column)
+    end
+
+    def get_random_column
+        ('A'..'G').to_a.sample
+    end
+
     def display_board 
         @board.display
     end
@@ -21,7 +30,6 @@ class Turn
     def get_user_input
         puts 'Enter a letter A-G to place your piece'
         input =  gets.chomp 
-        # require 'pry'; binding.pry 
         validate_user_input(input)
     end
 
