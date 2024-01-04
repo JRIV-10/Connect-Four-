@@ -47,6 +47,9 @@ class Turn
         if ('A'..'G').to_a.include?(input) && column_not_full?(input) 
             puts 'Good Move!'
             display_board
+        elsif input == 'q'
+            'See you next time, goodbye'
+            #Close Game
         else 
             get_user_input
             puts 'Invalid placement. Please enter a letter (A-G) or in a column that is not full'
