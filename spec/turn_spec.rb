@@ -11,4 +11,16 @@ RSpec.describe Turn do
             expect(turn).to be_a(Turn)
         end
     end
+
+    describe '#player_turn' do 
+        it 'places X for player turn' do 
+            board = Board.new
+            player = Player.new('Joey', 'X')
+            computer = Player.new('Computer', 'O')
+
+            turn = Turn.new(board, player, computer)
+
+            expect(turn.player_turn).to eq('X')
+        end
+    end
 end
