@@ -1,9 +1,4 @@
 class StartGame 
-    attr_reader :turn_count
-
-    def initialize
-        @turn_count = 0
-    end
 
     def give_welcome
        'Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit.'
