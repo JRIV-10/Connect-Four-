@@ -2,6 +2,7 @@ class Turn
     attr_reader :board,
                 :player, 
                 :computer
+    
     def initialize(board, player, computer)#, placement)
         @board = board 
         @player = player 
@@ -11,12 +12,13 @@ class Turn
     def player_turn
         display_board 
         column = get_user_input 
-        @board.place_piece(column, @player.piece)
+        @board = @board.place_piece(column, 'X')
+        @board
     end
 
     def computer_turn 
         column = get_random_column
-        @board.place_piece(column, @computer.piece) 
+        @board.place_piece(column, 'O') 
     end
 
     def get_random_column
@@ -33,11 +35,10 @@ class Turn
     end
 
     def display_board 
-        @board.display
+        StartGame.new.return_board(@board)
     end
 
     def get_user_input
-        puts 'Enter a letter A-G to place your piece'
         input =  gets.chomp 
         validate_user_input(input)
     end
@@ -45,10 +46,10 @@ class Turn
     def validate_user_input(input)
         if ('A'..'G').to_a.include?(input) && column_not_full?(input) 
             puts 'Good Move!'
-            input 
+            display_board
         else 
-            puts 'Invalid placement. Please enter a letter (A-G) or in a column that is not full'
             get_user_input
+            puts 'Invalid placement. Please enter a letter (A-G) or in a column that is not full'
         end
     end
 
