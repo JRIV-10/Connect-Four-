@@ -19,6 +19,7 @@ class Turn
         @board.place_piece(column, @computer.piece) if column_not_full?(column)
     end
 
+    
     def get_random_column
         ('A'..'G').to_a.sample
     end
