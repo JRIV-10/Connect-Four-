@@ -31,4 +31,23 @@ class Board
         first_av_cell = available_cell(column).assign_value(value)
         @board
     end
+
+    def return_board
+        render.join('\n')
+    end
+
+    def render
+        matrix = Array.new(6) { Array.new(7, '') }
+        columns = @board.keys
+        columns.each_with_index do |key, index|
+            column_cells = @board[key]
+            column_cells.each do |cell|
+                matrix[cell.row - 1][index] = cell.value
+            end
+        end
+        matrix.unshift(columns)
+
+        result_matrix = matrix.map { |row| row.join }
+    end
+
 end
