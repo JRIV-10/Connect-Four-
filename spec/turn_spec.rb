@@ -34,4 +34,19 @@ RSpec.describe Turn do
             expect(turn.computer_turn).to_not be nil 
         end
     end
+
+    describe 'player and computer are able to repeat turn sequence' do 
+        it 'allows turn sequence' do 
+            board = Board.new
+            player = Player.new('Joey', 'X')
+            computer = Player.new('Computer', 'O')
+            turn = Turn.new(board, player, computer)
+ 
+            expect(turn.validate_user_input('A')).to_not be nil 
+
+            turn.computer_turn
+            expect(turn.validate_computer_input('B')).to_not be nil 
+
+        end
+    end
 end

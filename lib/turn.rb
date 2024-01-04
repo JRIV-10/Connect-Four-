@@ -16,12 +16,20 @@ class Turn
 
     def computer_turn 
         column = get_random_column
-        @board.place_piece(column, @computer.piece) if column_not_full?(column)
+        @board.place_piece(column, @computer.piece) 
     end
 
-    
     def get_random_column
-        ('A'..'G').to_a.sample
+        input = ('A'..'G').to_a.sample
+        validate_computer_input(input)
+    end 
+
+    def validate_computer_input(input)
+        if column_not_full?(input) 
+            input 
+        else 
+            get_random_column
+        end
     end
 
     def display_board 
