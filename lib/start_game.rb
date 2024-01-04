@@ -9,7 +9,7 @@ class StartGame
     def process_main_menu_input(input)
         if  input == 'p'
             board = Board.new
-            return_board(board)
+            board.return_board(board)
             "Let's play the game"
         elsif input == 'q'
             'See you next time, goodbye'
@@ -23,7 +23,7 @@ class StartGame
         puts ' ------------------------------------------------ '
         
         formatted_board = format_board(board)
-        render(formatted_board).join('\n')
+        board.render(formatted_board).join('\n')
     end
     
     def render(board)    
