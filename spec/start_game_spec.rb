@@ -12,7 +12,7 @@ RSpec.describe StartGame do
         end
     end
 
-    describe '#Messajes' do
+    describe '#Messages' do
         it 'Returns main menu selection feedback' do
             game = StartGame.new
             input = 'p'
@@ -25,11 +25,20 @@ RSpec.describe StartGame do
             expect(game.process_main_menu_input(input)).to eq('Invalid placement. Please enter p or q')
         end
 
-        it 'Returns Turn Messaje' do
+        it 'Returns Turn Message' do
             game = StartGame.new
             @board = Board.new
             
-            expect(game.return_turn_messaje).to eq('Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------')
+            expect(game.return_turn_message).to eq('Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------')
+        end
+    end
+
+    describe '#exit_game' do 
+        it 'quits game if user input is q' do 
+            game = StartGame.new
+
+            input = 'q'
+            expect(game.exit_game).to raise_error(SystemExit) 
         end
     end
 end
