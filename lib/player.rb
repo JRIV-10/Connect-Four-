@@ -1,7 +1,13 @@
 class Player 
-    attr_reader :name
+    attr_reader :name,
+                :value
 
-    def get_user_name
+    def initialize(value, name) 
+        @name = name
+        @value = value 
+    end
+
+    def get_user_name(name)
         puts 'Please enter your name'
         @name = gets.chomp
     end
