@@ -21,6 +21,18 @@ class Turn
         @board.place_piece(column, 'O') 
     end
 
+    def turn_sequence
+        loop do 
+            player_turn
+
+            break if game_over? || game.exit_game
+
+            computer_turn
+
+            break if game_over? || game.exit_game
+        end
+    end
+
     def get_random_column
         input = ('A'..'G').to_a.sample
         validate_computer_input(input)
@@ -35,12 +47,14 @@ class Turn
     end
 
     def display_board 
-        StartGame.new.return_board(@board)
+        StartGame.new.return_matrix(@board)
     end
 
     def get_user_input
         input =  gets.chomp 
-        validate_user_input(input)
+        message = validate_user_input(input) 
+            puts message unless message.nil? 
+                input    
     end
 
     def validate_user_input(input)
@@ -49,10 +63,9 @@ class Turn
             display_board
         elsif input == 'q'
             'See you next time, goodbye'
-            #Close Game
         else 
-            get_user_input
-            puts 'Invalid placement. Please enter a letter (A-G) or in a column that is not full'
+            'Invalid placement. Please enter a letter (A-G) or in a column that is not full'
+            # get_user_input
         end
     end
 
