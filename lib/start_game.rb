@@ -31,4 +31,12 @@ class StartGame
         'See you next time, goodbye'
         exit 
     end
+
+    def create_players_turn
+        @user_name = Player.new.get_user_name
+        @computer_name = 'Computer'
+        turn = Turn.new(board, @user_name, computer)
+        turn.turn_sequence
+    end
+    
 end

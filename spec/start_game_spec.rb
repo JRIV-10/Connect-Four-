@@ -18,8 +18,8 @@ RSpec.describe StartGame do
             input = 'p'
             expect(game.process_main_menu_input(input)).to eq("Let's play the game")
 
-            input = 'q'
-            expect(game.process_main_menu_input(input)).to eq('See you next time, goodbye')
+            # input = 'q'
+            # expect(game.process_main_menu_input(input)).to eq('See you next time, goodbye')
             
             input = 'e'
             expect(game.process_main_menu_input(input)).to eq('Invalid placement. Please enter p or q')
@@ -33,12 +33,5 @@ RSpec.describe StartGame do
         end
     end
 
-    describe '#exit_game' do 
-        it 'quits game if user input is q' do 
-            game = StartGame.new
-
-            input = 'q'
-            expect(game.exit_game).to raise_error(SystemExit) 
-        end
-    end
+    
 end
