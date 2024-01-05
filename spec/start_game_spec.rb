@@ -1,8 +1,4 @@
-require 'rspec'
-require './lib/start_game'
-require './lib/cell.rb'
-require './lib/board.rb'
-
+require './spec/spec_helper'
 RSpec.describe StartGame do
     describe '#Initializes' do
         it 'Exists' do
@@ -32,6 +28,5 @@ RSpec.describe StartGame do
             expect(game.return_turn_message).to eq('Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------')
         end
     end
-
     
 end

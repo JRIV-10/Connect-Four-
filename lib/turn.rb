@@ -13,7 +13,8 @@ class Turn
         display_board 
         column = get_user_input 
         @board = @board.place_piece(column, 'X')
-        @board
+        @board.return_board
+        turn_sequence
     end
 
     def computer_turn 
