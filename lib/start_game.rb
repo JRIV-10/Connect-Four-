@@ -38,5 +38,63 @@ class StartGame
         turn = Turn.new(board, @user_name, computer)
         turn.turn_sequence
     end
+
+    def check_win(board, value)
+        if horizontal_win?(board, value) ||
+            vertical_win?(board, value) ||
+            diagonal_win?(board, value)
+            true 
+        else 
+            false 
+        end 
+    end
     
+    def draw(board, value)
+        
+    end
+    
+    def horizontal_win?(board, value)
+        board.each do |row|
+          row.each_cons(4) do |four_cells|
+            if four_cells.all? { |cell| cell.value == value }
+                true 
+            else 
+                false 
+            end
+        end 
+    end
+    
+    def vertical_win?(board, value)
+        board.transpose.each do |column|
+          column.each_cons(4) do |four_cells|
+            if four_cells.all? { |cell| cell.value == value }
+                true 
+            else 
+                false 
+            end
+        end
+    end
+
+    def diagonal_win?(board, value)
+        rows = board.length
+        columns = board[0].length
+        # Check diagonals from bottom-left to top-right
+        (rows - 3).times do |i|
+          (columns - 3).times do |j|
+           if (0..3).all? { |k| board[i + k][j + k].value == value }
+            true 
+           else 
+            false 
+            end
+        end
+        # Check diagonals from top-left to bottom-right
+        (rows - 3).times do |i|
+          (columns - 3).times do |j|
+            if (0..3).all? { |k| board[rows - 1 - i - k][j + k].value == value }
+                true 
+            else 
+                false 
+            end
+        end
+    end 
 end
