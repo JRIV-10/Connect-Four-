@@ -46,7 +46,7 @@ class StartGame
             diagonal_win?(board, value)
             return true 
         end 
-        false 
+        return false 
     end
 
     def game_result(board, value)
