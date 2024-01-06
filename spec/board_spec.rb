@@ -31,7 +31,7 @@ RSpec.describe Board do
             board = Board.new
 
             new_board = board.place_piece('A','X')
-            new_column = new_board.values.first.map do |cell|
+            new_column = new_board.board.values.first.map do |cell|
                         cell.value
                         end 
         
@@ -44,10 +44,10 @@ RSpec.describe Board do
             board1 = board.place_piece('A','X')
             board2 = board.place_piece('A','O')
             board3 = board.place_piece('B','X')
-            new_columnA = board3.values.first.map do |cell|
+            new_columnA = board3.board.values.first.map do |cell|
                         cell.value
                         end 
-            new_columnB = board3.values[1].map do |cell|
+            new_columnB = board3.board.values[1].map do |cell|
                 cell.value
                 end 
         
@@ -61,7 +61,7 @@ RSpec.describe Board do
         it 'Renders and returns initial board' do
             board = Board.new
 
-            expect(board.return_board).to eq('ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......')
+            expect(board.return_board).to eq("ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......")
         end
 
         it 'Renders and returns board correctly every time' do
@@ -71,7 +71,7 @@ RSpec.describe Board do
             board.place_piece('B','X')
             
             expect(board.return_board).to eq(
-            'ABCDEFG\n.......\n.......\n.......\n.......\nO......\nXX.....')
+            "ABCDEFG\n.......\n.......\n.......\n.......\nO......\nXX.....")
         end
     end
 end
