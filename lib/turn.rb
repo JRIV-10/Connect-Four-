@@ -1,7 +1,8 @@
 class Turn 
     attr_reader :board,
                 :player, 
-                :computer
+                :computer,
+                :game
     
     def initialize(board, player, computer)#, placement)
         @board = board 
@@ -21,16 +22,21 @@ class Turn
         column = get_random_column
         @board.place_piece(column, 'O') 
     end
+    
+    def display_board 
+        @game = StartGame.new
+        @game.return_matrix(@board)
+    end
 
     def turn_sequence
         loop do 
             player_turn
 
-            break if game_over? || game.exit_game
+            break if @game.game_result(@board, @value) || game.exit_game
 
             computer_turn
 
-            break if game_over? || game.exit_game
+            break if @game.game_result(@board, @value) || game.exit_game
         end
     end
 
@@ -47,9 +53,6 @@ class Turn
         end
     end
 
-    def display_board 
-        StartGame.new.return_matrix(@board)
-    end
 
     def get_user_input
         input =  gets.chomp 
