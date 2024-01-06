@@ -21,6 +21,7 @@ class Board
     end
 
     def available_cell(column)
+        column_cells = []
         column_cells = @board[column]
         column_cells.reverse.find do |cell|
             cell.empty?
@@ -28,8 +29,11 @@ class Board
     end
 
     def place_piece(column,value)
-        first_av_cell = available_cell(column).assign_value(value)
-        @board
+        # first_av_cell = available_cell(column).assign_value(value)
+        # @board
+        first_av_cell = available_cell(column)
+        first_av_cell.assign_value(value) if first_av_cell
+        return self
     end
 
     def return_board

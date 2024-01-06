@@ -14,7 +14,8 @@ class Turn
         display_board 
         column = get_user_input 
         @board = @board.place_piece(column, 'X')
-        @board.return_board
+        # @board.return_board
+        display_board
         turn_sequence
     end
 
@@ -25,7 +26,7 @@ class Turn
     
     def display_board 
         @game = StartGame.new
-        @game.return_matrix(@board)
+        puts @game.return_matrix(@board)
     end
 
     def turn_sequence

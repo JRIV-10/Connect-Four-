@@ -9,19 +9,21 @@ class StartGame
 
     def process_main_menu_input(input)
         if  input == 'p'
+            # player = Player(value, name)
+            # @player.get_user_name(name)
             @board = Board.new
             return_turn_message
             return_matrix(@board)
-            "Let's play the game"
+            puts "Let's play the game"
         elsif input == 'q'
             exit_game
         else
-            'Invalid placement. Please enter p or q'
+            puts 'Invalid placement. Please enter p or q'
         end
     end 
 
     def return_turn_message
-        'Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------'
+        puts 'Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------'
     end
 
     def return_matrix(board)
@@ -29,12 +31,12 @@ class StartGame
     end
 
     def exit_game
-        'See you next time, goodbye'
+        puts 'See you next time, goodbye'
         exit 
     end
 
     def create_players_turn
-        @user_name = Player.new('X', 'Joey').get_user_name
+        @user_name = Player.new('X', 'Joey')#.get_user_name(name)
         @computer_name = 'Computer'
         turn = Turn.new(board, @user_name, @computer_name)
         turn.player_turn
@@ -51,9 +53,9 @@ class StartGame
 
     def game_result(board, value)
         if value == check_win(board, 'X') 
-            'Congrats #{player.get_user_name} you won!'
+            puts 'Congrats #{player.get_user_name} you won!'
         else value == draw?(board, 'X')
-            "It's a draw, Good Game!"
+            puts "It's a draw, Good Game!"
         end 
     end
 
