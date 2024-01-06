@@ -90,7 +90,6 @@ class StartGame
     end
 
     def diagonal_win?(board, value)
-        #require 'pry'; binding.pry
         plain_board = board.board.values
         rows = plain_board.length
         columns = plain_board[0].length
@@ -101,7 +100,6 @@ class StartGame
                     return true  
                 end
             end 
-            false 
         end
         # Check diagonals from top-left to bottom-right
         (rows - 3).times do |i|
@@ -110,7 +108,7 @@ class StartGame
                     return true 
                 end
             end 
-            false 
         end
+        false 
     end 
 end
