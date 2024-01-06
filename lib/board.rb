@@ -21,11 +21,14 @@ class Board
     end
 
     def available_cell(column)
-        column_cells = []
+        # column_cells = []
         column_cells = @board[column]
+        return nil if column_cells.empty?
+
         column_cells.reverse.find do |cell|
-            cell.empty?
+            return cell if cell.empty?
         end
+        nil 
     end
 
     def place_piece(column,value)
@@ -34,10 +37,11 @@ class Board
         first_av_cell = available_cell(column)
         first_av_cell.assign_value(value) if first_av_cell
         return self
+        @board 
     end
 
     def return_board
-        render.join('\n')
+        render.join("\n")
     end
 
     def render

@@ -1,8 +1,9 @@
 class StartGame 
-    attr_reader :board
+    attr_reader :board, 
+                :turn 
 
     def give_welcome
-       puts 'Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit.'
+       puts "Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit."
        input =  gets.chomp
        process_main_menu_input(input)
     end
@@ -23,7 +24,7 @@ class StartGame
     end 
 
     def return_turn_message
-        puts 'Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------'
+        puts "Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------"
     end
 
     def return_matrix(board)
@@ -38,8 +39,9 @@ class StartGame
     def create_players_turn
         @user_name = Player.new('X', 'Joey')#.get_user_name(name)
         @computer_name = 'Computer'
-        turn = Turn.new(board, @user_name, @computer_name)
-        turn.player_turn
+        @turn = Turn.new(board, @user_name, @computer_name)
+        # turn.player_turn
+        @turn.turn_sequence
     end
 
     def check_win(board, value)
@@ -52,21 +54,39 @@ class StartGame
     end
 
     def game_result(board, value)
-        if value == check_win(board, 'X') 
-            puts 'Congrats #{player.get_user_name} you won!'
-        else value == draw?(board, 'X')
+        if check_win(board, 'X') 
+            puts "Congrats #{player.get_user_name} you won!"
+            board.board.display_board
+            return true 
+        elsif draw?(board, 'X') == true 
             puts "It's a draw, Good Game!"
+            board.board.display_board
+            return true 
+        else 
+            false 
         end 
     end
 
     def draw?(board, value)
         result = false 
-        board.render[0].each do |column|
-           if turn.column_not_full?(column) != true 
+        @turn = Turn.new(board, @user_name, @computer_name)
+
+        board.board.keys.each do |column|
+           if @turn.column_not_full?(column) != true 
                 result = true 
            end 
         end 
         result
+        # @turn = Turn.new(board, @user_name, @computer_name)
+        # if board.board.keys.all? do |column| 
+        #     @turn.column_not_full?(column) == nil
+        #         return true 
+        #     end
+        # end 
+        #     if board.available_cell(column) != nil 
+        #         result = true 
+        #     end
+        # end
     end
 
     def horizontal_win?(board, value)

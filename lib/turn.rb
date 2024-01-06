@@ -8,20 +8,24 @@ class Turn
         @board = board 
         @player = player 
         @computer = computer
+        @value = 'X'
+        @game = StartGame.new
     end
 
     def player_turn
         display_board 
         column = get_user_input 
-        @board = @board.place_piece(column, 'X')
+        @board = @board.place_piece(column, @value)
         # @board.return_board
-        display_board
-        turn_sequence
+        # display_board
+        # turn_sequence
     end
 
     def computer_turn 
         column = get_random_column
-        @board.place_piece(column, 'O') 
+        @board = @board.place_piece(column, 'O')
+        puts 'Computer turn'
+        # qdisplay_board
     end
     
     def display_board 
@@ -33,11 +37,11 @@ class Turn
         loop do 
             player_turn
 
-            break if @game.game_result(@board, @value) || game.exit_game
+            break if @game.game_result(@board, @value) 
 
             computer_turn
 
-            break if @game.game_result(@board, @value) || game.exit_game
+            break if @game.game_result(@board, @value) 
         end
     end
 
@@ -56,7 +60,7 @@ class Turn
 
 
     def get_user_input
-        input =  gets.chomp 
+        input =  gets.chomp.upcase
         message = validate_user_input(input) 
             puts message unless message.nil? 
                 input    
@@ -65,7 +69,7 @@ class Turn
     def validate_user_input(input)
         if ('A'..'G').to_a.include?(input) && column_not_full?(input) 
             puts 'Good Move!'
-            display_board
+            # display_board
         elsif input == 'q'
             'See you next time, goodbye'
         else 
