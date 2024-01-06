@@ -50,4 +50,54 @@ RSpec.describe Turn do
 
         end
     end
+
+    describe '#horizontal_win?' do
+        it 'returns true for horizontal win' do
+            board = [['A','B','C','D','E','F','G'],['O','.','O','X','.','O','X'], ['X','.','X','O','.','X','O'],['O','.','X','X','X','X','O'],['X','.','X','X','O','O','X'],['O','.','O','O','X','X','X'], ['X','.','X','O','O','O','X']]
+
+            expect(horizontal_win?(board,'X')).to be true
+        end
+    
+        it 'returns false for no horizontal win' do
+            board = [['A','B','C','D','E','F','G'],['O','.','O','X','.','O','X'], ['X','.','X','O','.','X','O'],['O','.','X','X','X','O','O'],['X','.','X','X','O','O','X'],['O','.','O','O','X','X','X'], ['X','.','X','O','O','O','X']]
+            
+            expect(horizontal_win?(board,'X')).to be false
+        end
+    end
+
+    describe '#vertical_win?' do
+        it 'returns false for no vertical win' do
+            board = [['A','B','C','D','E','F','G'],['O','.','O','X','.','O','X'], ['X','.','X','O','.','X','O'],['O','.','X','X','O','X','O'],['X','.','X','X','O','O','X'],['O','.','O','O','X','X','X'], ['X','.','X','O','O','O','X']]
+        
+            expect(vertical_win?(board,'X')).to be false
+        end
+    end
+
+    describe '#diagonal_win?' do
+        it 'returns true for diagonal win' do
+        board = [['A','B','C','D','E','F','G'],['O','.','O','X','.','O','X'], ['X','.','X','O','.','X','O'],['O','.','X','X','X','X','O'],['X','.','X','X','O','O','X'],['O','.','X','O','X','X','X'], ['X','X','X','O','O','O','X']]
+        
+        expect(diagonal_win?(board,'X')).to be true
+        end
+
+        it 'returns false for no diagonal win' do
+            board = [['A','B','C','D','E','F','G'],['O','.','O','X','.','O','X'], ['X','.','X','O','.','X','O'],['O','.','X','X','X','X','O'],['X','.','X','O','O','O','X'],['O','.','X','O','X','X','X'], ['X','X','X','O','O','O','X']]
+
+            expect(diagonal_win?(board,'X')).to be false
+        end
+    end
+        
+    describe '#check_win' do
+        it 'returns true for any win' do
+            board = [['A','B','C','D','E','F','G'],['O','.','O','X','.','O','X'], ['X','.','O','O','.','X','O'],['O','.','O','X','X','X','O'],['X','.','O','X','O','O','X'],['O','.','X','O','X','X','X'], ['X','X','X','O','O','O','X']]
+            
+            expect(check_win?(board,'O')).to be true
+        end
+
+        it 'returns false for no win' do
+            board = [['A','B','C','D','E','F','G'],['O','.','O','X','.','O','X'], ['X','.','X','O','.','X','O'],['O','.','O','X','X','X','O'],['X','.','O','X','O','O','X'],['O','.','X','O','X','X','X'], ['X','X','X','O','O','O','X']]
+            
+            expect(check_win?(board,'O')).to be false
+        end
+    end
 end
