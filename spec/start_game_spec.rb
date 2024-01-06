@@ -100,30 +100,34 @@ RSpec.describe StartGame do
             board.place_piece('D','O')
             board.place_piece('D','O')
             board.place_piece('D','X')
-        
+
             expect(game.diagonal_win?(board,'X')).to be true
         end
 
-        xit 'returns false for no diagonal win' do
+        it 'returns false for no diagonal win' do
             board = Board.new
             game = StartGame.new
-            board.place_piece('A','X')
-            board.place_piece('B','O')
-            board.place_piece('B','X')
-            board.place_piece('C','O')
-            board.place_piece('C','O')
-            board.place_piece('C','X')
-            board.place_piece('D','O')
-            board.place_piece('D','O')
-            board.place_piece('D','O')
-            board.place_piece('D','O')
+            3.times {board.place_piece('A','X')}
+            3.times {board.place_piece('A','O')}
+            3.times {board.place_piece('B','X')}
+            3.times {board.place_piece('B','O')}
+            3.times {board.place_piece('C','X')}
+            3.times {board.place_piece('C','O')}
+            3.times {board.place_piece('D','X')}
+            3.times {board.place_piece('D','O')}
+            3.times {board.place_piece('E','X')}
+            3.times {board.place_piece('E','O')}
+            3.times {board.place_piece('F','X')}
+            3.times {board.place_piece('F','O')}
+            3.times {board.place_piece('G','X')}
+            3.times {board.place_piece('G','O')}
 
             expect(game.diagonal_win?(board,'X')).to be false
         end
     end
         
     describe '#check_win' do
-        xit 'returns true for any win' do
+        it 'returns true for any win' do
             board = Board.new
             game = StartGame.new
             board.place_piece('A','X')
@@ -137,22 +141,16 @@ RSpec.describe StartGame do
             board.place_piece('D','O')
             board.place_piece('D','X')
 
-            expect(game.check_win(board,'O')).to be true
+            expect(game.check_win(board,'X')).to be true
         end
 
-        xit 'returns false for no win' do
+        it 'returns false for no win' do
             board = Board.new
             game = StartGame.new
             board.place_piece('A','O')
             board.place_piece('B','O')
             board.place_piece('B','X')
             board.place_piece('C','O')
-            # board.place_piece('C','O')
-            # board.place_piece('C','X')
-            # board.place_piece('D','O')
-            # board.place_piece('D','O')
-            # board.place_piece('D','O')
-            # board.place_piece('D','O')
             
             expect(game.check_win(board,'X')).to be false
         end
