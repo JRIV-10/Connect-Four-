@@ -44,36 +44,18 @@ class StartGame
         @turn.turn_sequence
     end
 
-    def check_win(board, value)
-        # if horizontal_win?(board, value) ||
-        #     vertical_win?(board, value) ||
-        #     diagonal_win?(board, value)
-            # if check_win(board, 'X') || draw?(@board, 'X')  
-            #     puts "Congrats you won!"
-            #     return true 
-            # else check_win(board, 'O') || draw?(@board, 'O')
-            #     puts "Computer won, Good try!"
-            #     return true 
-            # end 
-            # give_welcome
-            # create_players_turn
-            # return true 
-        # end 
-        # return false 
-    end
-
     def game_result(board, value)
         if horizontal_win?(board, value) ||
             vertical_win?(board, value) ||
             diagonal_win?(board, value)
             if value == 'X'
                 puts "Congrats you won!"
-            else 
+            elsif value == 'O'
                 puts "Computer won, Good try!"
             end 
                 give_welcome    
                 return true 
-        elsif draw?(board, value) == true 
+        elsif draw?(board, value)
             puts "It's a draw, Good Game!"
             # @turn.display_board
             give_welcome
