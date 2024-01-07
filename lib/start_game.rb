@@ -1,27 +1,29 @@
 class StartGame 
-    attr_reader :board
+    attr_reader :board, 
+                :turn
 
     def give_welcome
-       puts 'Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit.'
-       input =  gets.chomp
+       puts "Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit."
+       input =  gets.chomp.upcase
        process_main_menu_input(input)
+       create_players_turn
     end
 
     def process_main_menu_input(input)
-        if  input == 'p'
+        if  input == 'P'
             @board = Board.new
             return_turn_message
             return_matrix(@board)
-            "Let's play the game"
-        elsif input == 'q'
+            return "Let's play the game"
+        elsif input == 'Q'
             exit_game
         else
-            'Invalid placement. Please enter p or q'
+            return 'Invalid placement. Please enter p or q'
         end
     end 
 
     def return_turn_message
-        'Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------'
+        return "Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------"
     end
 
     def return_matrix(board)
@@ -29,42 +31,47 @@ class StartGame
     end
 
     def exit_game
-        'See you next time, goodbye'
+        return 'See you next time, goodbye'
         exit 
     end
 
     def create_players_turn
-        @user_name = Player.new('X', 'Joey').get_user_name
-        @computer_name = 'Computer'
-        turn = Turn.new(board, @user_name, @computer_name)
-        turn.player_turn
-    end
-
-    def check_win(board, value)
-        if horizontal_win?(board, value) ||
-            vertical_win?(board, value) ||
-            diagonal_win?(board, value)
-            return true 
-        end 
-        return false 
+        @user_name = Player.new('X', 'Joey')#.get_user_name(name)
+        @computer_name = Player.new('O', 'Computer')
+        @turn = Turn.new(@board, @user_name, @computer_name)
+        
+        if @turn.turn_sequence == :quit 
+            return give_welcome
+        end
     end
 
     def game_result(board, value)
-        if value == check_win(board, 'X') 
-            'Congrats #{player.get_user_name} you won!'
-        else value == draw?(board, 'X')
-            "It's a draw, Good Game!"
+        if horizontal_win?(board, value) ||
+            vertical_win?(board, value) ||
+            diagonal_win?(board, value)
+            if value == 'X'
+                puts "Congrats you won!"
+            elsif value == 'O'
+                puts "Computer won, Good try!"
+            end 
+                give_welcome    
+                return true 
+        elsif draw?(board, value)
+            puts "It's a draw, Good Game!"
+            give_welcome
+            return true 
+        else 
+            return false 
         end 
     end
 
     def draw?(board, value)
         result = false 
-        board.render[0].each do |column|
-           if turn.column_not_full?(column) != true 
-                result = true 
-           end 
-        end 
-        result
+
+        board.board.keys.each do |column|
+            result = !board.available_cell(column)
+        end
+        result 
     end
 
     def horizontal_win?(board, value)
