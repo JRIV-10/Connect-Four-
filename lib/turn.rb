@@ -66,22 +66,33 @@ class Turn
     end
 
     def get_user_input
-        input =  gets.chomp.upcase
+        input = gets.chomp.upcase
         message = validate_user_input(input) 
-            puts message unless message.nil? 
-                input    
+
+        if message
+            puts message
+            return input
+        else
+            get_user_input 
+        end 
     end
 
     def validate_user_input(input)
-        if ('A'..'G').to_a.include?(input) && column_not_full?(input) 
-            'Good Move!'
+        if ('A'..'G').to_a.include?(input) 
+            if column_not_full?(input) 
+                puts 'Good Move!'
+                return input 
+            else 
+                puts 'Please choose a column that is not full'
+                return nil 
+            end 
             # display_board
-        elsif input == 'q'
-            'See you next time, goodbye'
+        elsif input == 'Q'
+            @game.exit_game
         else 
-            'Invalid placement. Please enter a letter (A-G) or in a column that is not full'
-            # get_user_input
-        end
+            puts 'Invalid placement. Please enter a letter (A-G) ' 
+            return nil 
+        end 
     end
 
     def column_not_full?(column)

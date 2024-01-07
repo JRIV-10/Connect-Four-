@@ -23,12 +23,9 @@ class Board
     def available_cell(column)
         # column_cells = []
         column_cells = @board[column]
-        return nil if column_cells.empty?
+        return nil if column_cells.nil? || column_cells.empty?
 
-        column_cells.reverse.find do |cell|
-            return cell if cell.empty?
-        end
-        nil 
+        column_cells.reverse.find(&:empty?)
     end
 
     def place_piece(column,value)

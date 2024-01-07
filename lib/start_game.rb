@@ -4,20 +4,20 @@ class StartGame
 
     def give_welcome
        puts "Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit."
-       input =  gets.chomp
+       input =  gets.chomp.upcase
        process_main_menu_input(input)
        create_players_turn
     end
 
     def process_main_menu_input(input)
-        if  input == 'p'
+        if  input == 'P'
             # player = Player(value, name)
             # @player.get_user_name(name)
             @board = Board.new
             return_turn_message
             return_matrix(@board)
             return "Let's play the game"
-        elsif input == 'q'
+        elsif input == 'Q'
             exit_game
         else
             return 'Invalid placement. Please enter p or q'
