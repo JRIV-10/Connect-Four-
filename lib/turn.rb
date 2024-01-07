@@ -33,7 +33,7 @@ class Turn
             puts @game.return_matrix(@board)
           else
             puts "No board to display."
-            @game.end_game
+            @game.exit_game
         end
     end
 
