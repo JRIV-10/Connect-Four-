@@ -50,6 +50,9 @@ class Board
                 matrix[cell.row - 1][index] = cell.value
             end
         end
+        columns = columns.map do |column|
+            column.center(3)
+        end
         matrix.unshift(columns)
 
         result_matrix = matrix.map { |row| row.join }
