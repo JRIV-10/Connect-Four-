@@ -39,7 +39,7 @@ class StartGame
 
     def create_players_turn
         @user_name = Player.new('X', 'Joey')#.get_user_name(name)
-        @computer_name = 'Computer'
+        @computer_name = Player.new('O', 'Computer')
         @turn = Turn.new(@board, @user_name, @computer_name)
         @turn.turn_sequence
     end
@@ -67,14 +67,18 @@ class StartGame
 
     def draw?(board, value)
         result = false 
-        @turn = Turn.new(board, @user_name, @computer_name)
+        # @turn = Turn.new(board, @user_name, @computer_name)
 
         board.board.keys.each do |column|
-           if @turn.column_not_full?(column) != true 
-                result = true 
-           end 
-        end 
-        result
+            result = !board.available_cell(column)
+        end
+        result 
+         
+        #    if @turn.column_not_full?(column) != true 
+        #         result = true 
+        #    end 
+        # end 
+        # result
         # @turn = Turn.new(board, @user_name, @computer_name)
         # if board.board.keys.all? do |column| 
         #     @turn.column_not_full?(column) == nil
