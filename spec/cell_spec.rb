@@ -7,7 +7,7 @@ RSpec.describe Cell do
             
             expect(cell.column).to eq('A')
             expect(cell.row).to eq(6)
-            expect(cell.value).to eq('.')
+            expect(cell.value).to eq(' . ')
         end 
     end 
 
@@ -25,7 +25,7 @@ RSpec.describe Cell do
             
             expect(cell.empty?).to eq(true)
 
-            cell.assign_value('X') 
+            cell.assign_value(' X ') 
 
             expect(cell.empty?).to eq(false)
         end
