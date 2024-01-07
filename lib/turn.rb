@@ -5,7 +5,7 @@ class Turn
                 :value, 
                 :game
     
-    def initialize(board, player, computer)#, placement)
+    def initialize(board, player, computer)
         @board = board 
         @player = player 
         @computer = computer
@@ -14,7 +14,7 @@ class Turn
     end
 
     def player_turn
-        @value = 'X'
+        @value = ' X '
         display_board 
         column = get_user_input
         return :quit if column.nil?
@@ -22,7 +22,7 @@ class Turn
     end
 
     def computer_turn 
-        @value = 'O'
+        @value = ' O '
         column = get_random_column
         @board = @board.place_piece(column, @value)
         return 'Computer turn'
@@ -33,6 +33,7 @@ class Turn
             puts @game.return_matrix(@board)
           else
             puts "No board to display."
+            @game.end_game
         end
     end
 
