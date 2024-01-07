@@ -1,6 +1,6 @@
 class StartGame 
     attr_reader :board, 
-                :turn 
+                :turn
 
     def give_welcome
        puts "Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit."
@@ -15,16 +15,16 @@ class StartGame
             @board = Board.new
             return_turn_message
             return_matrix(@board)
-            puts "Let's play the game"
+            return "Let's play the game"
         elsif input == 'q'
             exit_game
         else
-            puts 'Invalid placement. Please enter p or q'
+            return 'Invalid placement. Please enter p or q'
         end
     end 
 
     def return_turn_message
-        puts "Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------"
+        return "Please Enter your column selection: letter A to G/n Or feel free to Enter q to quit the game\n  ------------------------------------------------"
     end
 
     def return_matrix(board)
@@ -32,15 +32,14 @@ class StartGame
     end
 
     def exit_game
-        puts 'See you next time, goodbye'
+        return 'See you next time, goodbye'
         exit 
     end
 
     def create_players_turn
         @user_name = Player.new('X', 'Joey')#.get_user_name(name)
         @computer_name = 'Computer'
-        @turn = Turn.new(board, @user_name, @computer_name)
-        # turn.player_turn
+        @turn = Turn.new(@board, @user_name, @computer_name)
         @turn.turn_sequence
     end
 
@@ -48,22 +47,38 @@ class StartGame
         if horizontal_win?(board, value) ||
             vertical_win?(board, value) ||
             diagonal_win?(board, value)
+            # if check_win(board, 'X') || draw?(@board, 'X')  
+            #     puts "Congrats you won!"
+            #     return true 
+            # else check_win(board, 'O') || draw?(@board, 'O')
+            #     puts "Computer won, Good try!"
+            #     return true 
+            # end 
+            # give_welcome
+            # create_players_turn
             return true 
         end 
         return false 
     end
 
     def game_result(board, value)
-        if check_win(board, 'X') 
-            puts "Congrats #{player.get_user_name} you won!"
-            board.board.display_board
+        if check_win(board, value) 
+            # if value == 'X' 
+                puts "Congrats you won!"
+                # board.board.display_board
+            give_welcome    
             return true 
-        elsif draw?(board, 'X') == true 
+            # else 
+            #     "Computer won, Good try!"
+            # end 
+            
+        elsif draw?(board, value) == true 
             puts "It's a draw, Good Game!"
-            board.board.display_board
+            # @turn.display_board
+            give_welcome
             return true 
         else 
-            false 
+            return false 
         end 
     end
 
