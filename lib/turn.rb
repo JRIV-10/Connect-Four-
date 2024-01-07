@@ -16,11 +16,9 @@ class Turn
     def player_turn
         @value = 'X'
         display_board 
-        column = get_user_input 
+        column = get_user_input
+         return :quit if column.nil?
         @board = @board.place_piece(column, @value)
-        # @board.return_board
-        # display_board
-        # turn_sequence
     end
 
     def computer_turn 
@@ -28,7 +26,6 @@ class Turn
         column = get_random_column
         @board = @board.place_piece(column, @value)
         return 'Computer turn'
-        # qdisplay_board
     end
     
     def display_board 
@@ -36,13 +33,14 @@ class Turn
             puts @game.return_matrix(@board)
           else
             puts "No board to display."
-          
         end
     end
 
     def turn_sequence
         loop do 
             player_turn
+
+            return :quit if @value.nil?
 
             break if @game.game_result(@board, @value) 
 
@@ -78,7 +76,11 @@ class Turn
     end
 
     def validate_user_input(input)
-        if ('A'..'G').to_a.include?(input) 
+        if input.upcase == 'Q'
+            @game.exit_game
+            return @game.give_welcome
+
+        elsif ('A'..'G').to_a.include?(input) 
             if column_not_full?(input) 
                 puts 'Good Move!'
                 return input 
@@ -87,8 +89,7 @@ class Turn
                 return nil 
             end 
             # display_board
-        elsif input == 'Q'
-            @game.exit_game
+        
         else 
             puts 'Invalid placement. Please enter a letter (A-G) ' 
             return nil 

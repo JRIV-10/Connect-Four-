@@ -9,9 +9,9 @@ computer = Player.new('O', 'Computer')
 game = StartGame.new
 board = Board.new
 cells = Cell.new(@column, @row)
-# player.get_user_name(@name)
+
 
 game.give_welcome
-game.create_players_turn
+
 
 

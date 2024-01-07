@@ -11,8 +11,6 @@ class StartGame
 
     def process_main_menu_input(input)
         if  input == 'P'
-            # player = Player(value, name)
-            # @player.get_user_name(name)
             @board = Board.new
             return_turn_message
             return_matrix(@board)
@@ -41,7 +39,10 @@ class StartGame
         @user_name = Player.new('X', 'Joey')#.get_user_name(name)
         @computer_name = Player.new('O', 'Computer')
         @turn = Turn.new(@board, @user_name, @computer_name)
-        @turn.turn_sequence
+        
+        if @turn.turn_sequence == :quit 
+            return give_welcome
+        end
     end
 
     def game_result(board, value)
@@ -57,7 +58,6 @@ class StartGame
                 return true 
         elsif draw?(board, value)
             puts "It's a draw, Good Game!"
-            # @turn.display_board
             give_welcome
             return true 
         else 
@@ -67,28 +67,11 @@ class StartGame
 
     def draw?(board, value)
         result = false 
-        # @turn = Turn.new(board, @user_name, @computer_name)
 
         board.board.keys.each do |column|
             result = !board.available_cell(column)
         end
         result 
-         
-        #    if @turn.column_not_full?(column) != true 
-        #         result = true 
-        #    end 
-        # end 
-        # result
-        # @turn = Turn.new(board, @user_name, @computer_name)
-        # if board.board.keys.all? do |column| 
-        #     @turn.column_not_full?(column) == nil
-        #         return true 
-        #     end
-        # end 
-        #     if board.available_cell(column) != nil 
-        #         result = true 
-        #     end
-        # end
     end
 
     def horizontal_win?(board, value)
