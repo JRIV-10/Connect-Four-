@@ -6,11 +6,11 @@ class Cell
     def initialize(column, row)
         @column = column
         @row = row 
-        @value = '.'
+        @value = ' . '
     end 
 
     def empty?
-        @value == '.'
+        @value == ' . '
     end
 
     def assign_value(value)
