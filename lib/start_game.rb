@@ -36,8 +36,8 @@ class StartGame
     end
 
     def create_players_turn
-        @user_name = Player.new('X', 'Joey')#.get_user_name(name)
-        @computer_name = Player.new('O', 'Computer')
+        @user_name = Player.new(' X ', 'Joey')#.get_user_name(name)
+        @computer_name = Player.new(' O ', 'Computer')
         @turn = Turn.new(@board, @user_name, @computer_name)
         
         if @turn.turn_sequence == :quit 
@@ -49,9 +49,9 @@ class StartGame
         if horizontal_win?(board, value) ||
             vertical_win?(board, value) ||
             diagonal_win?(board, value)
-            if value == 'X'
+            if value == ' X '
                 puts "Congrats you won!"
-            elsif value == 'O'
+            elsif value == ' O '
                 puts "Computer won, Good try!"
             end 
                 give_welcome    
