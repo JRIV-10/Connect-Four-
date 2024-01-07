@@ -60,7 +60,7 @@ RSpec.describe Board do
         it 'Renders and returns initial board' do
             board = Board.new
 
-            expect(board.return_board).to eq("ABCDEFG\n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . ")
+            expect(board.return_board).to eq(" A  B  C  D  E  F  G \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . ")
         end
 
         it 'Renders and returns board correctly every time' do
@@ -70,7 +70,7 @@ RSpec.describe Board do
             board.place_piece('B' , ' X ') 
             
             expect(board.return_board).to eq(
-                "ABCDEFG\n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n O  .  .  .  .  .  . \n X  X  .  .  .  .  . ")
+                " A  B  C  D  E  F  G \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n .  .  .  .  .  .  . \n O  .  .  .  .  .  . \n X  X  .  .  .  .  . ")
         end
     end
 end
