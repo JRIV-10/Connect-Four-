@@ -12,10 +12,8 @@ RSpec.describe Player do
 
         it 'has a name' do 
             player = Player.new('X', 'name')
-            input = 'Laura'
-            player.get_user_name(input)
             
-            expect(player.name).to_not be nil
+            expect(player.name).to eq('name') 
 
             computer = Player.new('O', 'Computer')
             
@@ -34,8 +32,9 @@ RSpec.describe Player do
     describe '#get_user_name' do 
         it 'prints please enter your name' do 
             player = Player.new('X', 'Laura')
-
-            expect(player.get_user_name(player.name)).to_not be nil 
+            input = 'Laura'
+            
+            expect(player.get_user_name(input)).to_not be nil 
         end
     end
 end

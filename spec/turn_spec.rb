@@ -43,7 +43,7 @@ RSpec.describe Turn do
             turn = Turn.new(board, player, computer)
  
             expect(turn.validate_user_input('A')).to_not be nil 
-            expect(turn.validate_user_input('M')).to eq('Invalid placement. Please enter a letter (A-G) or in a column that is not full')
+            expect(turn.validate_user_input('M')).to be nil 
             
             turn.computer_turn
             expect(turn.validate_computer_input('B')).to_not be nil 

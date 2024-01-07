@@ -17,7 +17,7 @@ class Turn
         @value = 'X'
         display_board 
         column = get_user_input
-         return :quit if column.nil?
+        return :quit if column.nil?
         @board = @board.place_piece(column, @value)
     end
 
