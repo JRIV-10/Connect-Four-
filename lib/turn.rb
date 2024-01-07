@@ -30,6 +30,7 @@ class Turn
     
     def display_board 
         if @game && @board
+            puts @game.return_turn_message
             puts @game.return_matrix(@board)
           else
             puts "No board to display."
