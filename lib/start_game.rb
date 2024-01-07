@@ -6,6 +6,7 @@ class StartGame
        puts "Welcome to CONNECT FOUR\n Enter p to play. Enter q to quit."
        input =  gets.chomp
        process_main_menu_input(input)
+       create_players_turn
     end
 
     def process_main_menu_input(input)
@@ -44,9 +45,9 @@ class StartGame
     end
 
     def check_win(board, value)
-        if horizontal_win?(board, value) ||
-            vertical_win?(board, value) ||
-            diagonal_win?(board, value)
+        # if horizontal_win?(board, value) ||
+        #     vertical_win?(board, value) ||
+        #     diagonal_win?(board, value)
             # if check_win(board, 'X') || draw?(@board, 'X')  
             #     puts "Congrats you won!"
             #     return true 
@@ -56,22 +57,22 @@ class StartGame
             # end 
             # give_welcome
             # create_players_turn
-            return true 
-        end 
-        return false 
+            # return true 
+        # end 
+        # return false 
     end
 
     def game_result(board, value)
-        if check_win(board, value) 
-            # if value == 'X' 
+        if horizontal_win?(board, value) ||
+            vertical_win?(board, value) ||
+            diagonal_win?(board, value)
+            if value == 'X'
                 puts "Congrats you won!"
-                # board.board.display_board
-            give_welcome    
-            return true 
-            # else 
-            #     "Computer won, Good try!"
-            # end 
-            
+            else 
+                puts "Computer won, Good try!"
+            end 
+                give_welcome    
+                return true 
         elsif draw?(board, value) == true 
             puts "It's a draw, Good Game!"
             # @turn.display_board
